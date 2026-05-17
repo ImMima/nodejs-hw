@@ -5,14 +5,14 @@ import {
   createNote,
   deleteNote,
   updateNote,
-} from '../controllers/notesController';
+} from '../controllers/notesController.js';
 
-const router = Router();
+const notesRoute = Router();
 
-router.get('/notes', getAllNotes);
-router.get('/notes/:noteId', getNoteById);
-router.post('/notes', createNote);
-router.delete('/notes/:noteId', deleteNote);
-router.patch('/notes/:noteId', updateNote);
+notesRoute.get('/notes', getAllNotes);
+notesRoute.get('/notes/:noteId', getNoteById);
+notesRoute.post('/notes', createNote);
+notesRoute.delete('/notes/:noteId', deleteNote);
+notesRoute.patch('/notes/:noteId', updateNote);
 
-export default router;
+export default notesRoute;
