@@ -13,13 +13,15 @@ import {
   noteIdSchema,
   updateNoteSchema,
 } from '../validations/notesValidation.js';
+import { authenticate } from '../middleware/authenticate.js';
 
-const notesRoute = Router();
+const notesRoutes = Router();
 
-notesRoute.get('/notes', celebrate(getAllNotesSchema), getAllNotes);
-notesRoute.get('/notes/:noteId', celebrate(noteIdSchema), getNoteById);
-notesRoute.post('/notes', celebrate(createNoteSchema), createNote);
-notesRoute.delete('/notes/:noteId', celebrate(noteIdSchema), deleteNote);
-notesRoute.patch('/notes/:noteId', celebrate(updateNoteSchema), updateNote);
+notesRoutes.use('/notes', authenticate);
+notesRoutes.get('/notes', celebrate(getAllNotesSchema), getAllNotes);
+notesRoutes.get('/notes/:noteId', celebrate(noteIdSchema), getNoteById);
+notesRoutes.post('/notes', celebrate(createNoteSchema), createNote);
+notesRoutes.delete('/notes/:noteId', celebrate(noteIdSchema), deleteNote);
+notesRoutes.patch('/notes/:noteId', celebrate(updateNoteSchema), updateNote);
 
-export default notesRoute;
+export default notesRoutes;
