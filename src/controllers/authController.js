@@ -106,7 +106,7 @@ export const requestResetEmail = async (req, res) => {
   const user = await User.findOne({ email });
 
   if (!user) {
-    res.status(200).json({
+    return res.status(200).json({
       message: 'If this email exists, a reset link has been sent',
     });
   }
